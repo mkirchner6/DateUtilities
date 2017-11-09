@@ -36,7 +36,6 @@ public class DateUtilities {
      * @param custFormat - a String to format the LocalDateTime based on DateTimeFormatter class
      * @return a String based on the specified pattern
      * @throws IllegalArgumentException if date is not recognized
-     * @throws ParseException if date string cannot be parsed as a date
      */
     public final String toStringCustomnFormat(LocalDateTime date, String custFormat) throws IllegalArgumentException {
         if (date == null) {
@@ -51,7 +50,9 @@ public class DateUtilities {
      *
      * @param date - a String version of a date and time object (String format must match default format(12 01 2017))
      * @return a LocalDateTime based on a default pattern
+     * @throws java.text.ParseException
      * @throws IllegalArgumentException if date is not recognized
+     * * @throws ParseException if date string cannot be parsed as a date
      */
     public final LocalDateTime toLocalDateTimeDefaultFormat(String date) throws ParseException{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy");
