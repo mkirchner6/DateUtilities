@@ -17,9 +17,9 @@ public class DateUtilities {
     /**
      * Format a LocalDateTime object into a string based on a default format
      *
-     * @param LocalDateTime 
-     * @return a string based on the default format
-     * @throws IllegalArgumentException if pattern is not recognized
+     * @param date - an object with a date and time value 
+     * @return a string based on the default format (12 01 2017)
+     * @throws IllegalArgumentException if date argument is null
      */
     public final String toStringDefaultFormat(LocalDateTime date) throws IllegalArgumentException {
         if (date == null) {
@@ -32,8 +32,8 @@ public class DateUtilities {
     /**
      * Format a LocalDateTime object into a string based on the specified pattern.
      *
-     * @param LocalDateTime 
-     * @param pattern - a String to format the LocalDateTime
+     * @param date -  an object with a date and time value
+     * @param custFormat - a String to format the LocalDateTime based on DateTimeFormatter class
      * @return a String based on the specified pattern
      * @throws IllegalArgumentException if date is not recognized
      * @throws ParseException if date string cannot be parsed as a date
@@ -49,7 +49,7 @@ public class DateUtilities {
     /**
      * Format a String based on a default pattern.
      *
-     * @param String
+     * @param date - a String version of a date and time object (String format must match default format(12 01 2017))
      * @return a LocalDateTime based on a default pattern
      * @throws IllegalArgumentException if date is not recognized
      */
@@ -61,8 +61,9 @@ public class DateUtilities {
     /**
      * Format a String based on a default pattern.
      *
-     * @param String
-     * @param pattern - a String to format the LocalDateTime
+     * @param date - a String version of a date and time object (String format must match default format)
+     * @param custFormat - a String to use as the format for the LocalDateTime
+     *                     object to be returned in
      * @return a LocalDateTime based on a default pattern
      * @throws IllegalArgumentException if date is not recognized
      * @throws ParseException if date string cannot be parsed as a date
@@ -70,5 +71,16 @@ public class DateUtilities {
     public final LocalDateTime toLocalDateTimecustomFormat(String date, String custFormat) throws ParseException{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(custFormat);
         return LocalDateTime.parse(date, formatter);
+    }
+    
+    /**
+     * Format a String based on a default pattern.
+     *
+     * @param startDate - a LocalDateTime object
+     * @param endDate - a LocalDateTime object
+     * @return a duration of the difference of the two objects passed in
+     */
+    public final Duration dateDiffernce(LocalDateTime startDate, LocalDateTime endDate){
+        return Duration.between(startDate, endDate);
     }
 }
